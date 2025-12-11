@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <title>Agregar Materia</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Registar Materia</h1>
+
+      <form id="form" method="POST">
+        {% csrf_token %}
+
+        <label>Nombre de la Materia:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label>Comentario:</label><br>
+        <textarea id="comentario" name="comentario"></textarea><br><br>
+
+        <button type="submit">Guardar</button>
+      </form>
+
+      <h2>Comentarios agregados</h2>
+
+      <table>
+        <tr>
+          <th>Nombre</th>
+          <th>Comentario</th>
+          <th>Fecha</th>
+        </tr>
+
+        {% for m in materias %}
+        <tr>
+          <td>{{ m.nombre }}</td>
+          <td>{{ m.comentario }}</td>
+          <td>{{ m.fecha|date:"d/m/Y H:i" }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <script>
+      document.getElementById("form").addEventListener("submit", function (e) {
+        const nombre = document.getElementById("nombre").value.trim();
+        const comentario = document.getElementById("comentario").value.trim();
+
+        if (nombre === "" || comentario === "") {
+          alert("Todos los campos son obligatorios");
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>
