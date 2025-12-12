@@ -33,7 +33,7 @@
         </tr>
 
         {% for m in materias %}
-        <tr>
+        <tr {% if m.fecha|date:"Y" < "2025" %} class="old"{% endif %}>
           <td>{{ m.nombre }}</td>
           <td>{{ m.comentario }}</td>
           <td>{{ m.fecha|date:"d/m/Y H:i" }}</td>
