@@ -85,7 +85,7 @@ tr:hover td {
   background: #e0e9ff;
 }
 
-/* filas con fecha anterior a 2025 */
 tr.old td {
-  color: #cc0000;
+  background: #cc0000;
+  color: #ffffff;
 }
